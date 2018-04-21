@@ -1,6 +1,6 @@
 package com.jack.web.controller;
 
-import com.jack.web.po.Coin;
+import com.jack.web.model.Rate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -13,9 +13,9 @@ import java.util.List;
 @Controller
 public class RateController {
 
-    @RequestMapping("/queryCoins")
+    @RequestMapping("/queryRates")
     public ModelAndView queryCoins(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) {
-        List<Coin> coinList = new ArrayList<Coin>();
+        List<Rate> rateList = new ArrayList<Rate>();
 
         ModelAndView modelAndView = new ModelAndView();
 

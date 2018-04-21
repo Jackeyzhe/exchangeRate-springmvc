@@ -7,7 +7,7 @@
     <!-- 配置别名 -->
     <typeAliases>
         <!-- 批量扫描别名 -->
-        <package name="com.jack.web.po"/>
+        <package name="com.jack.web.model"/>
     </typeAliases>
 
     <!-- 配置mapper 由于使用spring和mybatis的整合包进行mapper扫描，这里不需要配置了。 必须遵循：mapper.xml和mapper.java文件同名且在一个目录 -->

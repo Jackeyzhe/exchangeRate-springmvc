@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jack.web.dao.RateMapper" >
+  <resultMap id="BaseResultMap" type="com.jack.web.model.Rate" >
+    <constructor >
+      <idArg column="ID" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="COIN" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="RATE" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="TIME" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, COIN, RATE, TIME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from RATE
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from RATE
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.jack.web.model.Rate" >
+    insert into RATE (ID, COIN, RATE, 
+      TIME)
+    values (#{id,jdbcType=INTEGER}, #{coin,jdbcType=VARCHAR}, #{rate,jdbcType=VARCHAR}, 
+      #{time,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jack.web.model.Rate" >
+    insert into RATE
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="coin != null" >
+        COIN,
+      </if>
+      <if test="rate != null" >
+        RATE,
+      </if>
+      <if test="time != null" >
+        TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="coin != null" >
+        #{coin,jdbcType=VARCHAR},
+      </if>
+      <if test="rate != null" >
+        #{rate,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null" >
+        #{time,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jack.web.model.Rate" >
+    update RATE
+    <set >
+      <if test="coin != null" >
+        COIN = #{coin,jdbcType=VARCHAR},
+      </if>
+      <if test="rate != null" >
+        RATE = #{rate,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null" >
+        TIME = #{time,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jack.web.model.Rate" >
+    update RATE
+    set COIN = #{coin,jdbcType=VARCHAR},
+      RATE = #{rate,jdbcType=VARCHAR},
+      TIME = #{time,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
