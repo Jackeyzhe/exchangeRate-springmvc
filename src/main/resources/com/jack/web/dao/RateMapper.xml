@@ -18,6 +18,12 @@
     from RATE
     where ID = #{id,jdbcType=INTEGER}
   </select>
+  <select id="findRateList" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from RATE
+    where TIME = #{time,jdbcType=DATE}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from RATE
     where ID = #{id,jdbcType=INTEGER}

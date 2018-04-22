@@ -2,6 +2,9 @@ package com.jack.web.dao;
 
 import com.jack.web.model.Rate;
 
+import java.util.Date;
+import java.util.List;
+
 public interface RateMapper {
     int deleteByPrimaryKey(Integer id);
 
@@ -14,4 +17,6 @@ public interface RateMapper {
     int updateByPrimaryKeySelective(Rate record);
 
     int updateByPrimaryKey(Rate record);
+
+    List<Rate> findRateList(Date date);
 }
