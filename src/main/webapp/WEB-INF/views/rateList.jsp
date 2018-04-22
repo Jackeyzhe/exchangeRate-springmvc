@@ -6,33 +6,29 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>查询商品列表Rate</title>
+    <title>汇率转换器</title>
 </head>
 <body>
-<form name="itemsForm" action="${pageContext.request.contextPath }/queryRates.action" method="post">
-    查询条件：
-    商品列表：
-    <table width="100%" border=1>
-        <tr>
-            <td>选择</td>
-            <td>商品名称</td>
-            <td>商品价格</td>
-            <td>生产日期</td>
-            <td>商品描述</td>
-            <td>操作</td>
-        </tr>
+<form name="itemsForm" action="" method="post">
+    汇率转换：
+    <div id="result"></div>
+    <input id="quantity" type="text">
+    <select id="coin" value="">
         <c:forEach items="${rateList}" var="item">
-            <tr>
-                <td><input type="checkbox" name="items_id" value="${item.id}"/></td>
-                <td>${item.coin }</td>
-                <td>${item.rate }</td>
-                <td><fmt:formatDate value="${item.time}" pattern="yyyy-MM-dd"/></td>
-
-            </tr>
+        <option value="${item.rate}" >${item.coin}</option>
         </c:forEach>
-
-    </table>
+    </select>
+    <button id="transfer">转换</button>
 </form>
 </body>
+
+<script type="text/javascript">
+    $("#transfer").unbind("click").bind("click", function () {
+        var quantity = $("#quantity").val();
+        var rate = $("#coin").val();
+        var per = rate / 100;
+        $("#result").append(per * quantity);
+    });
+</script>
 
 </html>
