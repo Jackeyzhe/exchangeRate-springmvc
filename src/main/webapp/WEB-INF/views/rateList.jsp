@@ -9,8 +9,8 @@
     <title>汇率转换器</title>
 </head>
 <body>
-<form name="itemsForm" action="" method="post">
-    汇率转换：
+
+    汇率转
     <div id="result"></div>
     <input id="quantity" type="text">
     <select id="coin" value="">
@@ -19,11 +19,10 @@
         </c:forEach>
     </select>
     <button id="transfer">转换</button>
-</form>
 </body>
-
+<script type="text/javascript" src="/plugins/jquery-1.8.0.min.js"></script>
 <script type="text/javascript">
-    $("#transfer").unbind("click").bind("click", function () {
+    $("#transfer").unbind("click").bind("click", function () {debugger;
         var quantity = $("#quantity").val();
         var rate = $("#coin").val();
         var per = rate / 100;

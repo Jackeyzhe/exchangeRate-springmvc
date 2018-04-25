@@ -6,7 +6,7 @@
       <idArg column="ID" jdbcType="INTEGER" javaType="java.lang.Integer" />
       <arg column="COIN" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="RATE" jdbcType="VARCHAR" javaType="java.lang.String" />
-      <arg column="TIME" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="TIME" jdbcType="DATE" javaType="java.util.Date" />
     </constructor>
   </resultMap>
   <sql id="Base_Column_List" >
@@ -22,7 +22,7 @@
     select
     <include refid="Base_Column_List"/>
     from RATE
-    where TIME = #{time,jdbcType=DATE}
+    where TIME LIKE CONCAT('%',#{time,jdbcType=DATE},'%') order by TIME DESC limit 0,27
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from RATE
@@ -32,7 +32,7 @@
     insert into RATE (ID, COIN, RATE, 
       TIME)
     values (#{id,jdbcType=INTEGER}, #{coin,jdbcType=VARCHAR}, #{rate,jdbcType=VARCHAR}, 
-      #{time,jdbcType=TIMESTAMP})
+      #{time,jdbcType=DATE})
   </insert>
   <insert id="insertSelective" parameterType="com.jack.web.model.Rate" >
     insert into RATE
@@ -61,7 +61,7 @@
         #{rate,jdbcType=VARCHAR},
       </if>
       <if test="time != null" >
-        #{time,jdbcType=TIMESTAMP},
+        #{time,jdbcType=DATE},
       </if>
     </trim>
   </insert>
@@ -75,7 +75,7 @@
         RATE = #{rate,jdbcType=VARCHAR},
       </if>
       <if test="time != null" >
-        TIME = #{time,jdbcType=TIMESTAMP},
+        TIME = #{time,jdbcType=DATE},
       </if>
     </set>
     where ID = #{id,jdbcType=INTEGER}
@@ -84,7 +84,7 @@
     update RATE
     set COIN = #{coin,jdbcType=VARCHAR},
       RATE = #{rate,jdbcType=VARCHAR},
-      TIME = #{time,jdbcType=TIMESTAMP}
+      TIME = #{time,jdbcType=DATE}
     where ID = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

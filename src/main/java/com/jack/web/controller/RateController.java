@@ -9,6 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -23,11 +24,20 @@ public class RateController {
     public ModelAndView queryCoins(HttpServletRequest httpServletRequest) throws Exception {
         Date now = new Date();
 
-        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH");
 
         String date = df.format(now);
 
-        List<Rate> rates = rateService.findRateList(now);
+        List<Rate> rates = rateService.findRateList(df.parse(date));
+
+        while (null == rates || rates.size() <= 0) {
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(now);
+            calendar.add(Calendar.DAY_OF_MONTH, -1);
+            now = calendar.getTime();
+            date = df.format(now);
+            rates = rateService.findRateList(df.parse(date));
+        }
 
         ModelAndView modelAndView = new ModelAndView();
 
