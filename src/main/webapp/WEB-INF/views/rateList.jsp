@@ -29,6 +29,7 @@
         var per = rate / 100;
         var result = per * quantity;
         var msg = quantity + coin + "=" + result + "人民币";
+        $("#result").empty();
         $("#result").append(msg);
     });
 </script>
