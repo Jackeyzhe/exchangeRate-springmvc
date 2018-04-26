@@ -20,7 +20,7 @@
     </select>
     <button id="transfer">转换</button>
 </body>
-<script type="text/javascript" src="/plugins/jquery-1.8.0.min.js"></script>
+<script type="text/javascript" src="<c:url value='/plugins/jquery-1.8.0.min.js' />"></script>
 <script type="text/javascript">
     $("#transfer").unbind("click").bind("click", function () {debugger;
         var quantity = $("#quantity").val();
