@@ -10,7 +10,7 @@
 </head>
 <body>
 
-    汇率转
+    丸子牌汇率转换器
     <div id="result"></div>
     <input id="quantity" type="text">
     <select id="coin" value="">
@@ -22,11 +22,14 @@
 </body>
 <script type="text/javascript" src="<c:url value='/plugins/jquery-1.8.0.min.js' />"></script>
 <script type="text/javascript">
-    $("#transfer").unbind("click").bind("click", function () {debugger;
+    $("#transfer").unbind("click").bind("click", function () {
         var quantity = $("#quantity").val();
-        var rate = $("#coin").val();
+        var rate = $("#coin option:selected").val();
+        var coin = $("#coin option:selected").text();
         var per = rate / 100;
-        $("#result").append(per * quantity);
+        var result = per * quantity;
+        var msg = quantity + coin + "=" + result + "人民币";
+        $("#result").append(msg);
     });
 </script>
 
